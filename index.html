@@ -8,712 +8,549 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --coral:   #E8644A;
-  --coral-lt:#F2856F;
-  --cream:   #FAF7F2;
-  --cream-dk:#F0EBE1;
-  --navy:    #1C2B4A;
-  --navy-lt: #2D4070;
-  --stone:   #8C7B6B;
-  --ink:     #2C2C2C;
-  --white:   #FFFFFF;
+  --coral: #E8644A; --coral-lt: #F2856F;
+  --cream: #FAF7F2; --cream-dk: #F0EBE1;
+  --navy: #1C2B4A;  --navy-lt: #2D4070;
+  --stone: #8C7B6B; --ink: #2C2C2C; --white: #FFFFFF;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  overflow-x: hidden;
-}
-
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 40px;
-  background: rgba(250,247,242,0.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(140,123,107,0.12);
-}
-
-.nav-logo {
-  font-family: 'Lora', serif;
-  font-size: 22px; font-weight: 700;
-  color: var(--navy);
-  letter-spacing: -0.3px;
-}
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+ 
+/* ANNOUNCE BAR */
+.announce-bar { background: var(--navy); padding: 10px 24px; text-align: center; font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.75); letter-spacing: 0.02em; position: relative; z-index: 101; }
+.announce-bar a { color: var(--coral-lt); text-decoration: none; font-weight: 600; margin-left: 8px; border-bottom: 1px solid rgba(242,133,111,0.4); transition: border-color 0.2s; }
+.announce-bar a:hover { border-color: var(--coral-lt); }
+.announce-dot { display: inline-block; width: 6px; height: 6px; background: #5AC87A; border-radius: 50%; margin-right: 8px; vertical-align: middle; animation: pulse 2s infinite; }
+ 
+/* NAV */
+nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(250,247,242,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(140,123,107,0.1); }
+.nav-logo { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: var(--navy); letter-spacing: -0.3px; }
 .nav-logo span { color: var(--coral); }
-
-.nav-badge {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--stone);
-  background: var(--cream-dk);
-  padding: 5px 14px; border-radius: 20px;
-  border: 1px solid rgba(140,123,107,0.2);
-}
-
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  padding: 120px 40px 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Background texture circles */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -120px; right: -120px;
-  width: 500px; height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(232,100,74,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -80px; left: -80px;
-  width: 400px; height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(28,43,74,0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 28px;
-  animation: fadeUp 0.6s ease both;
-}
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: ''; display: block;
-  width: 24px; height: 1px;
-  background: var(--coral); opacity: 0.5;
-}
-
-.hero h1 {
-  font-family: 'Lora', serif;
-  font-size: clamp(38px, 7vw, 72px);
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1.1;
-  letter-spacing: -1px;
-  max-width: 820px;
-  margin-bottom: 24px;
-  animation: fadeUp 0.6s 0.1s ease both;
-}
-.hero h1 em {
-  color: var(--coral);
-  font-style: italic;
-}
-
-.hero-sub {
-  font-size: clamp(16px, 2.5vw, 20px);
-  color: var(--stone);
-  line-height: 1.65;
-  max-width: 560px;
-  margin-bottom: 48px;
-  font-weight: 400;
-  animation: fadeUp 0.6s 0.2s ease both;
-}
-
-/* CTA form */
-.cta-form {
-  display: flex; gap: 0;
-  width: 100%; max-width: 480px;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 32px rgba(28,43,74,0.12);
-  animation: fadeUp 0.6s 0.3s ease both;
-}
-.cta-form input {
-  flex: 1;
-  padding: 16px 20px;
-  border: none; outline: none;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  background: var(--white);
-  color: var(--ink);
-}
-.cta-form input::placeholder { color: #BBBBB0; }
-.cta-form button {
-  padding: 16px 24px;
-  background: var(--coral);
-  color: var(--white);
-  border: none; cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px; font-weight: 600;
-  white-space: nowrap;
-  transition: background 0.2s;
-}
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-badge { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--stone); background: var(--cream-dk); padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(140,123,107,0.2); }
+.nav-cta { font-size: 13px; font-weight: 600; color: var(--coral); text-decoration: none; border-bottom: 1px solid rgba(232,100,74,0.3); transition: border-color 0.2s; }
+.nav-cta:hover { border-color: var(--coral); }
+ 
+/* HERO */
+.hero { min-height: 100vh; padding: 100px 48px 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+.hero-blob { position: absolute; pointer-events: none; border-radius: 50%; filter: blur(80px); }
+.hero-blob.b1 { width: 600px; height: 600px; top: -150px; right: -150px; background: radial-gradient(circle, rgba(232,100,74,0.12) 0%, transparent 70%); animation: blobFloat 12s ease-in-out infinite; }
+.hero-blob.b2 { width: 500px; height: 500px; bottom: -120px; left: -120px; background: radial-gradient(circle, rgba(28,43,74,0.07) 0%, transparent 70%); animation: blobFloat 18s ease-in-out infinite reverse; }
+.hero-blob.b3 { width: 280px; height: 280px; top: 45%; left: 18%; background: radial-gradient(circle, rgba(232,100,74,0.06) 0%, transparent 70%); animation: blobFloat 22s ease-in-out infinite 5s; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral); margin-bottom: 32px; animation: fadeUp 0.7s ease both; }
+.hero-eyebrow::before, .hero-eyebrow::after { content: ''; display: block; width: 28px; height: 1px; background: var(--coral); opacity: 0.4; }
+.hero h1 { font-family: 'Lora', serif; font-size: clamp(44px, 8vw, 88px); font-weight: 700; color: var(--navy); line-height: 1.05; letter-spacing: -2px; max-width: 900px; margin-bottom: 28px; animation: fadeUp 0.7s 0.1s ease both; }
+.hero h1 em { color: var(--coral); font-style: italic; }
+.hero-sub { font-size: clamp(16px, 2vw, 20px); color: var(--stone); line-height: 1.7; max-width: 520px; margin-bottom: 52px; animation: fadeUp 0.7s 0.2s ease both; }
+.cta-form { display: flex; width: 100%; max-width: 500px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 40px rgba(28,43,74,0.14); animation: fadeUp 0.7s 0.3s ease both; }
+.cta-form input { flex: 1; padding: 18px 22px; border: none; outline: none; font-family: 'DM Sans', sans-serif; font-size: 15px; background: var(--white); color: var(--ink); }
+.cta-form input::placeholder { color: #C4BAB0; }
+.cta-form button { padding: 18px 28px; background: var(--coral); color: var(--white); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
 .cta-form button:hover { background: var(--coral-lt); }
-
-.cta-note {
-  font-size: 12px; color: var(--stone);
-  margin-top: 12px;
-  animation: fadeUp 0.6s 0.35s ease both;
-}
-
-/* ── FOUNDER STRIP ── */
-.founder-strip {
-  background: var(--navy);
-  padding: 60px 40px;
-  text-align: center;
-}
-.founder-strip blockquote {
-  font-family: 'Lora', serif;
-  font-size: clamp(18px, 3vw, 26px);
-  font-style: italic;
-  color: var(--white);
-  max-width: 720px;
-  margin: 0 auto 20px;
-  line-height: 1.55;
-  opacity: 0.92;
-}
-.founder-strip cite {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px; font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--coral-lt);
-  font-style: normal;
-}
-
-/* ── WHAT IS FABLE ── */
-.what-section {
-  padding: 100px 40px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.section-label {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--coral);
-  margin-bottom: 16px;
-}
-.what-section h2 {
-  font-family: 'Lora', serif;
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1.2;
-  max-width: 640px;
-  margin-bottom: 24px;
-}
-.what-section p {
-  font-size: 17px; color: var(--stone);
-  line-height: 1.75; max-width: 580px;
-  margin-bottom: 16px;
-}
+.cta-note { font-size: 12px; color: var(--stone); margin-top: 14px; animation: fadeUp 0.7s 0.35s ease both; }
+ 
+/* STATS STRIP */
+.stats-strip { background: var(--cream-dk); border-top: 1px solid rgba(140,123,107,0.1); border-bottom: 1px solid rgba(140,123,107,0.1); }
+.stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); max-width: 1100px; margin: 0 auto; }
+.stat-item { padding: 44px 32px; text-align: center; border-right: 1px solid rgba(140,123,107,0.1); transition: background 0.25s; }
+.stat-item:last-child { border-right: none; }
+.stat-item:hover { background: rgba(232,100,74,0.04); }
+.stat-num { font-family: 'Lora', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 8px; letter-spacing: -1px; }
+.stat-num span { color: var(--coral); }
+.stat-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--stone); }
+ 
+/* FOUNDER STRIP */
+.founder-strip { background: var(--navy); padding: 80px 48px; text-align: center; position: relative; overflow: hidden; }
+.founder-strip::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 900px; height: 400px; background: radial-gradient(ellipse, rgba(232,100,74,0.07) 0%, transparent 65%); pointer-events: none; }
+.founder-strip blockquote { font-family: 'Lora', serif; font-size: clamp(18px, 3vw, 28px); font-style: italic; color: var(--white); max-width: 780px; margin: 0 auto 24px; line-height: 1.55; opacity: 0.9; position: relative; z-index: 1; }
+.founder-strip cite { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--coral-lt); font-style: normal; position: relative; z-index: 1; }
+ 
+/* WHAT IS FABLE */
+.what-section { padding: 140px 48px; max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--coral); margin-bottom: 20px; }
+.what-section h2 { font-family: 'Lora', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 700; color: var(--navy); line-height: 1.15; max-width: 680px; margin-bottom: 28px; letter-spacing: -0.5px; }
+.what-section p { font-size: 18px; color: var(--stone); line-height: 1.8; max-width: 600px; margin-bottom: 18px; }
 .what-section p strong { color: var(--navy); font-weight: 600; }
-
-/* ── SCENARIOS ── */
-.scenarios-section {
-  background: var(--cream-dk);
-  padding: 100px 40px;
-}
-.scenarios-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.scenarios-inner h2 {
-  font-family: 'Lora', serif;
-  font-size: clamp(26px, 4vw, 40px);
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 8px;
-}
-.scenarios-inner .sub {
-  font-size: 16px; color: var(--stone);
-  margin-bottom: 56px;
-}
-
-.scenarios-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.scenario-card {
-  background: var(--white);
-  border-radius: 16px;
-  padding: 32px 28px;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid rgba(140,123,107,0.1);
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-.scenario-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(28,43,74,0.1);
-}
-
-.scenario-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--coral);
-}
-
-.card-icon {
-  width: 44px; height: 44px;
-  background: rgba(232,100,74,0.08);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
-  margin-bottom: 18px;
-}
-
-.card-tag {
-  font-size: 9.5px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--coral); margin-bottom: 8px;
-}
-
-.scenario-card h3 {
-  font-family: 'Lora', serif;
-  font-size: 20px; font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 10px; line-height: 1.25;
-}
-
-.scenario-card p {
-  font-size: 14px; color: var(--stone);
-  line-height: 1.65;
-}
-
-.card-num {
-  position: absolute;
-  bottom: 12px; right: 18px;
-  font-family: 'Lora', serif;
-  font-size: 52px; font-weight: 700;
-  color: rgba(28,43,74,0.04);
-  line-height: 1;
-}
-
-/* ── HOW IT WORKS ── */
-.how-section {
-  padding: 100px 40px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.how-section h2 {
-  font-family: 'Lora', serif;
-  font-size: clamp(26px, 4vw, 40px);
-  color: var(--navy); margin-bottom: 56px;
-}
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
-}
-
-.step { position: relative; padding-left: 0; }
-
-.step-num {
-  font-family: 'Lora', serif;
-  font-size: 48px; font-weight: 700;
-  color: rgba(232,100,74,0.15);
-  line-height: 1; margin-bottom: 12px;
-}
-
-.step h3 {
-  font-family: 'Lora', serif;
-  font-size: 20px; font-weight: 600;
-  color: var(--navy); margin-bottom: 10px;
-}
-
-.step p {
-  font-size: 14.5px; color: var(--stone); line-height: 1.65;
-}
-
-/* ── FOR WHO ── */
-.for-section {
-  background: var(--navy);
-  padding: 100px 40px;
-  text-align: center;
-}
-
-.for-section .section-label { color: var(--coral-lt); }
-
-.for-section h2 {
-  font-family: 'Lora', serif;
-  font-size: clamp(26px, 4vw, 42px);
-  color: var(--white);
-  margin-bottom: 16px; line-height: 1.2;
-}
-
-.for-section .sub {
-  font-size: 17px; color: rgba(255,255,255,0.5);
-  max-width: 560px; margin: 0 auto 56px;
-  line-height: 1.65;
-}
-
-.for-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.for-pill {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 40px;
-  padding: 10px 22px;
-  font-size: 14px; font-weight: 500;
-  color: rgba(255,255,255,0.82);
-  transition: background 0.2s, border-color 0.2s;
-}
-.for-pill:hover {
-  background: rgba(232,100,74,0.2);
-  border-color: rgba(232,100,74,0.4);
-}
-
-/* ── WAITLIST BOTTOM ── */
-.waitlist-section {
-  padding: 100px 40px;
-  text-align: center;
-  position: relative; overflow: hidden;
-}
-.waitlist-section::before {
-  content: '';
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px; height: 400px;
-  background: radial-gradient(ellipse, rgba(232,100,74,0.07) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.waitlist-section .section-label { margin-bottom: 20px; }
-
-.waitlist-section h2 {
-  font-family: 'Lora', serif;
-  font-size: clamp(28px, 5vw, 52px);
-  color: var(--navy);
-  margin-bottom: 16px; line-height: 1.15;
-  letter-spacing: -0.5px;
-}
+ 
+/* SCENARIOS */
+.scenarios-section { background: var(--cream-dk); padding: 140px 0; overflow: hidden; }
+.scenarios-header { padding: 0 48px; max-width: 1100px; margin: 0 auto 60px; }
+.scenarios-header h2 { font-family: 'Lora', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: var(--navy); margin-bottom: 12px; letter-spacing: -0.5px; }
+.scenarios-header .sub { font-size: 16px; color: var(--stone); max-width: 580px; line-height: 1.7; }
+.scenarios-scroll { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 8px 48px 28px; scrollbar-width: none; }
+.scenarios-scroll::-webkit-scrollbar { display: none; }
+.scenario-card { flex-shrink: 0; width: clamp(280px, 30vw, 340px); background: var(--white); border-radius: 20px; padding: 36px 30px; position: relative; overflow: hidden; border: 1px solid rgba(140,123,107,0.08); scroll-snap-align: start; transition: transform 0.3s, box-shadow 0.3s; }
+.scenario-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(28,43,74,0.12); }
+.scenario-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--coral); }
+.card-icon { width: 48px; height: 48px; background: rgba(232,100,74,0.08); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px; }
+.card-tag { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral); margin-bottom: 10px; }
+.scenario-card h3 { font-family: 'Lora', serif; font-size: 21px; font-weight: 600; color: var(--navy); margin-bottom: 12px; line-height: 1.25; }
+.scenario-card p { font-size: 14px; color: var(--stone); line-height: 1.7; }
+.card-num { position: absolute; bottom: 16px; right: 20px; font-family: 'Lora', serif; font-size: 64px; font-weight: 700; color: rgba(28,43,74,0.04); line-height: 1; }
+.scroll-hint { padding: 0 48px; margin-top: 4px; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--stone); opacity: 0.5; }
+ 
+/* HOW IT WORKS */
+.how-section { padding: 140px 48px; }
+.how-inner { max-width: 1100px; margin: 0 auto; }
+.how-header { margin-bottom: 80px; }
+.how-header h2 { font-family: 'Lora', serif; font-size: clamp(28px, 4vw, 44px); color: var(--navy); letter-spacing: -0.5px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.step { padding-right: 40px; }
+.step-num { font-family: 'Lora', serif; font-size: 72px; font-weight: 700; color: rgba(232,100,74,0.1); line-height: 1; margin-bottom: 20px; }
+.step h3 { font-family: 'Lora', serif; font-size: 22px; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+.step p { font-size: 15px; color: var(--stone); line-height: 1.7; }
+ 
+/* DEMO SECTION */
+.demo-section { background: var(--navy); padding: 140px 48px; overflow: hidden; position: relative; }
+.demo-section::before { content: ''; position: absolute; top: -300px; right: -300px; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(232,100,74,0.08) 0%, transparent 60%); pointer-events: none; }
+.demo-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 100px; align-items: center; position: relative; z-index: 1; }
+.demo-copy .section-label { color: var(--coral-lt); }
+.demo-copy h2 { font-family: 'Lora', serif; font-size: clamp(28px, 4vw, 48px); color: var(--white); line-height: 1.15; margin: 16px 0 24px; letter-spacing: -0.5px; }
+.demo-copy p { font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.8; margin-bottom: 16px; max-width: 440px; }
+.pressure-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 40px; }
+.pressure-pill { padding: 8px 18px; border-radius: 40px; font-size: 12px; font-weight: 600; }
+.pressure-pill.light  { background: rgba(90,200,122,0.12); color: #7DDBA0; border: 1px solid rgba(90,200,122,0.25); }
+.pressure-pill.medium { background: rgba(232,100,74,0.12); color: var(--coral-lt); border: 1px solid rgba(232,100,74,0.25); }
+.pressure-pill.high   { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.12); }
+.mockup-window { background: #F8F5F0; border-radius: 24px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05); transform: perspective(1000px) rotateY(-3deg) rotateX(2deg); transition: transform 0.5s ease; }
+.mockup-window:hover { transform: perspective(1000px) rotateY(0) rotateX(0); }
+.mockup-topbar { background: var(--white); padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(140,123,107,0.1); }
+.mockup-scenario-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--coral); }
+.mockup-pressure-badge { font-size: 10px; font-weight: 600; padding: 4px 12px; border-radius: 20px; background: rgba(232,100,74,0.1); color: var(--coral); }
+.mockup-chat { padding: 28px 22px; display: flex; flex-direction: column; gap: 18px; min-height: 300px; background: #F8F5F0; }
+.bubble-wrap { display: flex; flex-direction: column; gap: 4px; }
+.bubble-wrap.them { align-items: flex-start; }
+.bubble-wrap.me { align-items: flex-end; }
+.bubble-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--stone); padding: 0 4px; margin-bottom: 2px; }
+.bubble { max-width: 84%; padding: 14px 18px; border-radius: 18px; font-size: 13px; line-height: 1.6; }
+.bubble.them { background: var(--white); color: var(--ink); border: 1px solid rgba(140,123,107,0.12); border-bottom-left-radius: 4px; }
+.bubble.me { background: var(--navy); color: rgba(255,255,255,0.92); border-bottom-right-radius: 4px; }
+.typing-indicator { display: flex; align-items: center; gap: 6px; padding: 14px 18px; background: var(--white); border-radius: 18px; border-bottom-left-radius: 4px; border: 1px solid rgba(140,123,107,0.12); width: fit-content; }
+.typing-dot { width: 6px; height: 6px; background: var(--stone); border-radius: 50%; animation: typingBounce 1.2s infinite; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+.mockup-feedback { background: var(--white); border-top: 1px solid rgba(140,123,107,0.1); padding: 18px 22px; display: flex; align-items: center; gap: 14px; }
+.feedback-icon { width: 40px; height: 40px; border-radius: 12px; background: rgba(232,100,74,0.08); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.feedback-text { flex: 1; }
+.feedback-title { font-size: 12px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+.feedback-sub { font-size: 11px; color: var(--stone); }
+.feedback-score { font-family: 'Lora', serif; font-size: 26px; font-weight: 700; color: var(--coral); }
+ 
+/* FOR WHO */
+.for-section { background: var(--cream-dk); padding: 140px 48px; text-align: center; }
+.for-section h2 { font-family: 'Lora', serif; font-size: clamp(28px, 4vw, 48px); color: var(--navy); margin-bottom: 16px; line-height: 1.15; letter-spacing: -0.5px; }
+.for-section .sub { font-size: 18px; color: var(--stone); max-width: 560px; margin: 0 auto 64px; line-height: 1.7; }
+.for-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 700px; margin: 0 auto; }
+.for-pill { background: var(--white); border: 1px solid rgba(140,123,107,0.18); border-radius: 40px; padding: 12px 24px; font-size: 14px; font-weight: 500; color: var(--navy); transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s; cursor: default; }
+.for-pill:hover { background: var(--coral); border-color: var(--coral); color: var(--white); transform: translateY(-2px); }
+ 
+/* PRICING */
+.pricing-section { padding: 140px 48px; }
+.pricing-inner { max-width: 1100px; margin: 0 auto; }
+.pricing-header { text-align: center; margin-bottom: 72px; }
+.pricing-header h2 { font-family: 'Lora', serif; font-size: clamp(32px, 5vw, 52px); color: var(--navy); line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.5px; }
+.pricing-header p { font-size: 18px; color: var(--stone); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 860px; margin: 0 auto; }
+.pricing-card { background: var(--white); border-radius: 24px; padding: 48px 40px; border: 1.5px solid rgba(140,123,107,0.1); position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+.pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(28,43,74,0.08); }
+.pricing-card.featured { background: var(--navy); border-color: var(--navy); box-shadow: 0 24px 80px rgba(28,43,74,0.22); }
+.pricing-card.featured:hover { transform: translateY(-6px); box-shadow: 0 32px 100px rgba(28,43,74,0.3); }
+.founding-badge { position: absolute; top: 24px; right: 24px; background: var(--coral); color: var(--white); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; }
+.pricing-tier { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral); margin-bottom: 16px; }
+.pricing-card.featured .pricing-tier { color: var(--coral-lt); }
+.pricing-price { font-family: 'Lora', serif; font-size: 60px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 6px; letter-spacing: -2px; }
+.pricing-card.featured .pricing-price { color: var(--white); }
+.pricing-price sup { font-size: 24px; vertical-align: super; margin-right: 2px; letter-spacing: 0; }
+.pricing-cadence { font-size: 13px; color: var(--stone); margin-bottom: 32px; }
+.pricing-card.featured .pricing-cadence { color: rgba(255,255,255,0.38); }
+.pricing-desc { font-size: 15px; color: var(--stone); line-height: 1.65; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(140,123,107,0.1); }
+.pricing-card.featured .pricing-desc { color: rgba(255,255,255,0.45); border-bottom-color: rgba(255,255,255,0.07); }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+.pricing-features li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--ink); line-height: 1.5; }
+.pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.78); }
+.feature-check { width: 20px; height: 20px; border-radius: 50%; background: rgba(232,100,74,0.1); color: var(--coral); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.pricing-card.featured .feature-check { background: rgba(232,100,74,0.22); }
+.pricing-cta { width: 100%; padding: 16px 20px; border-radius: 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; text-align: center; display: block; text-decoration: none; }
+.pricing-cta.outline { background: transparent; border: 1.5px solid rgba(140,123,107,0.22); color: var(--navy); }
+.pricing-cta.outline:hover { border-color: var(--coral); color: var(--coral); }
+.pricing-cta.solid { background: var(--coral); color: var(--white); border: none; }
+.pricing-cta.solid:hover { background: var(--coral-lt); }
+.pricing-note { text-align: center; margin-top: 28px; font-size: 13px; color: var(--stone); line-height: 1.6; max-width: 560px; margin-left: auto; margin-right: auto; }
+.pricing-note strong { color: var(--navy); }
+.founding-capture { max-width: 480px; margin: 44px auto 0; text-align: center; }
+.founding-capture p { font-size: 13px; color: var(--stone); margin-bottom: 16px; line-height: 1.65; }
+.founding-form { display: flex; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 24px rgba(28,43,74,0.1); }
+.founding-form input { flex: 1; padding: 16px 18px; border: none; outline: none; font-family: 'DM Sans', sans-serif; font-size: 14px; background: var(--white); color: var(--ink); }
+.founding-form input::placeholder { color: #C4BAB0; }
+.founding-form button { padding: 16px 22px; background: var(--navy); color: var(--white); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
+.founding-form button:hover { background: var(--navy-lt); }
+ 
+/* WAITLIST BOTTOM */
+.waitlist-section { padding: 140px 48px; text-align: center; background: var(--navy); position: relative; overflow: hidden; }
+.waitlist-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 800px; height: 500px; background: radial-gradient(ellipse, rgba(232,100,74,0.1) 0%, transparent 65%); pointer-events: none; }
+.waitlist-section .section-label { color: var(--coral-lt); margin-bottom: 24px; }
+.waitlist-section h2 { font-family: 'Lora', serif; font-size: clamp(32px, 6vw, 64px); color: var(--white); margin-bottom: 20px; line-height: 1.1; letter-spacing: -1px; }
 .waitlist-section h2 em { color: var(--coral); font-style: italic; }
-
-.waitlist-section p {
-  font-size: 17px; color: var(--stone);
-  margin-bottom: 40px; max-width: 480px;
-  margin-left: auto; margin-right: auto;
-  line-height: 1.65;
-}
-
-.cta-form-bottom {
-  display: flex; gap: 0;
-  width: 100%; max-width: 460px;
-  margin: 0 auto;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 32px rgba(28,43,74,0.12);
-}
-.cta-form-bottom input {
-  flex: 1; padding: 16px 20px;
-  border: none; outline: none;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px; background: var(--white);
-  color: var(--ink);
-}
-.cta-form-bottom input::placeholder { color: #BBBBB0; }
-.cta-form-bottom button {
-  padding: 16px 24px;
-  background: var(--coral); color: var(--white);
-  border: none; cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px; font-weight: 600;
-  transition: background 0.2s;
-}
+.waitlist-section p { font-size: 18px; color: rgba(255,255,255,0.4); margin-bottom: 48px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+.cta-form-bottom { display: flex; width: 100%; max-width: 480px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 48px rgba(0,0,0,0.3); }
+.cta-form-bottom input { flex: 1; padding: 18px 22px; border: none; outline: none; font-family: 'DM Sans', sans-serif; font-size: 15px; background: var(--white); color: var(--ink); }
+.cta-form-bottom input::placeholder { color: #C4BAB0; }
+.cta-form-bottom button { padding: 18px 28px; background: var(--coral); color: var(--white); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; transition: background 0.2s; }
 .cta-form-bottom button:hover { background: var(--coral-lt); }
-
-.status-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  margin-top: 20px;
-  font-size: 12px; color: var(--stone);
-}
-.status-dot {
-  width: 7px; height: 7px;
-  background: #5AC87A;
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-/* ── FOOTER ── */
-footer {
-  background: var(--navy);
-  padding: 32px 40px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px;
-}
-.footer-logo {
-  font-family: 'Lora', serif;
-  font-size: 18px; font-weight: 700;
-  color: var(--white);
-}
+.status-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; font-size: 12px; color: rgba(255,255,255,0.3); }
+.status-dot { width: 7px; height: 7px; background: #5AC87A; border-radius: 50%; animation: pulse 2s infinite; }
+ 
+/* FOOTER */
+footer { background: #111D30; padding: 36px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.footer-logo { font-family: 'Lora', serif; font-size: 20px; font-weight: 700; color: var(--white); }
 .footer-logo span { color: var(--coral); }
-.footer-note {
-  font-size: 12px; color: rgba(255,255,255,0.35);
+.footer-note { font-size: 12px; color: rgba(255,255,255,0.22); }
+ 
+/* ANIMATIONS */
+@keyframes fadeUp    { from { opacity:0; transform:translateY(28px); }  to { opacity:1; transform:translateY(0); } }
+@keyframes pulse     { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+@keyframes blobFloat { 0%,100% { transform:translate(0,0) scale(1); } 33% { transform:translate(18px,-18px) scale(1.04); } 66% { transform:translate(-10px,14px) scale(0.97); } }
+@keyframes typingBounce { 0%,60%,100% { transform:translateY(0); } 30% { transform:translateY(-6px); } }
+ 
+.reveal       { opacity:0; transform:translateY(28px);  transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal-left  { opacity:0; transform:translateX(-32px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal-right { opacity:0; transform:translateX(32px);  transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal-scale { opacity:0; transform:scale(0.94);       transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible, .reveal-left.visible, .reveal-right.visible, .reveal-scale.visible { opacity:1; transform:none; }
+.delay-1 { transition-delay:0.1s !important; }
+.delay-2 { transition-delay:0.2s !important; }
+.delay-3 { transition-delay:0.3s !important; }
+.delay-4 { transition-delay:0.4s !important; }
+.delay-5 { transition-delay:0.5s !important; }
+.delay-6 { transition-delay:0.6s !important; }
+ 
+/* RESPONSIVE */
+@media (max-width:900px) {
+  .demo-inner { grid-template-columns:1fr; gap:60px; }
+  .pricing-grid { grid-template-columns:1fr; }
+  .steps { grid-template-columns:1fr; gap:48px; }
+  .mockup-window { transform:none !important; }
+  .stats-inner { grid-template-columns:repeat(2,1fr); }
 }
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-/* Scroll reveal */
-.reveal {
-  opacity: 0; transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1; transform: translateY(0);
-}
-
-/* ── MOBILE ── */
-@media (max-width: 640px) {
-  nav { padding: 16px 20px; }
-  .hero { padding: 100px 20px 60px; }
-  .cta-form { flex-direction: column; border-radius: 12px; }
-  .cta-form input, .cta-form button { border-radius: 0; }
-  .cta-form button { padding: 14px; }
-  .founder-strip { padding: 50px 24px; }
-  .what-section, .how-section { padding: 70px 24px; }
-  .scenarios-section { padding: 70px 24px; }
-  .for-section { padding: 70px 24px; }
-  .waitlist-section { padding: 70px 24px; }
-  .cta-form-bottom { flex-direction: column; border-radius: 12px; }
-  footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+@media (max-width:640px) {
+  nav { padding:16px 24px; }
+  .nav-cta { display:none; }
+  .hero { padding:80px 24px 60px; }
+  .cta-form { flex-direction:column; border-radius:14px; }
+  .cta-form input, .cta-form button { border-radius:0; }
+  .founder-strip, .what-section, .how-section, .demo-section, .for-section, .pricing-section, .waitlist-section { padding-left:24px; padding-right:24px; }
+  .scenarios-section { padding-top:80px; padding-bottom:80px; }
+  .scenarios-header { padding:0 24px; }
+  .scenarios-scroll { padding:8px 24px 20px; }
+  .scroll-hint { padding:0 24px; }
+  .pricing-card { padding:36px 28px; }
+  .cta-form-bottom { flex-direction:column; border-radius:14px; }
+  .founding-form { flex-direction:column; border-radius:12px; }
+  footer { flex-direction:column; align-items:flex-start; padding:28px 24px; }
+  .stat-item { padding:28px 16px; }
 }
 </style>
 </head>
 <body>
-
+ 
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce-bar">
+  <span class="announce-dot"></span>
+  Now in beta · Founding member access open for the first 50
+  <a href="#pricing">See founding rate →</a>
+</div>
+ 
 <!-- NAV -->
 <nav>
   <div class="nav-logo">F<span>.</span>able</div>
-  <div class="nav-badge">Early Access</div>
+  <div class="nav-right">
+    <a href="#pricing" class="nav-cta">Founding access</a>
+    <div class="nav-badge">Early Access</div>
+  </div>
 </nav>
-
+ 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="hero-blob b3"></div>
   <div class="hero-eyebrow">Built for professionals</div>
   <h1>The conversations that <em>shape careers</em> deserve practice</h1>
-  <p class="hero-sub">30 scenarios. 30 days. Fable is an AI-powered app that trains you for the real, difficult conversations at work — before they happen.</p>
-
-  <form class="cta-form" onsubmit="handleSubmit(event, 'hero')">
+  <p class="hero-sub">30 scenarios. 30 days. Fable trains you for the real, difficult conversations at work — before they happen.</p>
+  <form class="cta-form" onsubmit="handleSubmit(event,'hero')">
     <input type="email" id="email-hero" placeholder="your@email.com" required>
     <button type="submit">Join Waitlist</button>
   </form>
   <p class="cta-note">Currently in development · Be first to know when we launch</p>
   <p class="cta-note" style="margin-top:6px;">Fable will be a paid app — waitlist members get early access at a founder's rate.</p>
 </section>
-
+ 
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item reveal delay-1">
+      <div class="stat-num">30<span>+</span></div>
+      <div class="stat-label">Workplace Scenarios</div>
+    </div>
+    <div class="stat-item reveal delay-2">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Pressure Levels</div>
+    </div>
+    <div class="stat-item reveal delay-3">
+      <div class="stat-num">30</div>
+      <div class="stat-label">Day Programme</div>
+    </div>
+    <div class="stat-item reveal delay-4">
+      <div class="stat-num">50</div>
+      <div class="stat-label">Founding Member Spots</div>
+    </div>
+  </div>
+</div>
+ 
 <!-- FOUNDER STRIP -->
 <div class="founder-strip">
-  <blockquote>"I spent years navigating high-stakes conversations in consulting and financial services — performance reviews, difficult clients, sensitive feedback. I wish I'd had a way to practise before the moment arrived. Fable is that practice."</blockquote>
-  <cite>— The founder of Fable, GRC Consultant &amp; Risk Advisory Manager</cite>
+  <blockquote class="reveal">"I spent years navigating high-stakes conversations in consulting and financial services — performance reviews, difficult clients, sensitive feedback. I wish I'd had a way to practise before the moment arrived. Fable is that practice."</blockquote>
+  <cite class="reveal delay-2">— The founder of Fable, GRC Consultant &amp; Risk Advisory Manager</cite>
 </div>
-
+ 
 <!-- WHAT IS FABLE -->
 <section class="what-section">
   <div class="section-label reveal">What is Fable</div>
-  <h2 class="reveal">An AI coach for the conversations most people avoid.</h2>
-  <p class="reveal">Real conversations — feedback, negotiations, confrontations — are rarely taught. We learn them by getting them wrong, which is expensive when careers and relationships are on the line.</p>
-  <p class="reveal">Fable gives you a <strong>safe space to rehearse</strong>. Pick a scenario, choose how hard you want to be pushed — light, medium, or high pressure — and talk it through with an AI that plays the other side authentically. Get honest, specific feedback on what worked and what didn't. Then go again.</p>
-  <p class="reveal"><strong>30 scenarios. 30 days.</strong> That's the programme. And with more than 30 scenarios already built — and more on the way — there's always a conversation worth practising.</p>
+  <h2 class="reveal delay-1">An AI coach for the conversations most people avoid.</h2>
+  <p class="reveal delay-2">Real conversations — feedback, negotiations, confrontations — are rarely taught. We learn them by getting them wrong, which is expensive when careers and relationships are on the line.</p>
+  <p class="reveal delay-3">Fable gives you a <strong>safe space to rehearse</strong>. Pick a scenario, choose how hard you want to be pushed — light, medium, or high pressure — and talk it through with an AI that plays the other side authentically. Get honest, specific feedback on what worked and what didn't. Then go again.</p>
+  <p class="reveal delay-4"><strong>30 scenarios. 30 days.</strong> That's the programme. And with more than 30 scenarios already built — and more on the way — there's always a conversation worth practising.</p>
 </section>
-
+ 
 <!-- SCENARIOS -->
 <section class="scenarios-section">
-  <div class="scenarios-inner">
+  <div class="scenarios-header">
     <div class="section-label reveal">Scenarios inside Fable</div>
-    <h2 class="reveal">Practice the moments that matter most</h2>
-    <p class="sub reveal">Each scenario puts you in a real workplace conversation. You choose the pressure level — light, medium, or high pushback — and the AI adapts. No scripts. No easy outs. More than 30 scenarios and growing.</p>
-
-    <div class="scenarios-grid">
-
-      <div class="scenario-card reveal">
-        <div class="card-num">01</div>
-        <div class="card-icon">🪞</div>
-        <div class="card-tag">Performance</div>
-        <h3>Delivering Difficult Feedback</h3>
-        <p>Practise giving honest performance feedback to a team member without damaging the relationship or losing the message.</p>
-      </div>
-
-      <div class="scenario-card reveal">
-        <div class="card-num">02</div>
-        <div class="card-icon">💼</div>
-        <div class="card-tag">Negotiation</div>
-        <h3>Salary & Compensation</h3>
-        <p>Walk into compensation conversations with confidence. Practise anchoring, handling pushback, and knowing when to hold firm.</p>
-      </div>
-
-      <div class="scenario-card reveal">
-        <div class="card-num">03</div>
-        <div class="card-icon">⚡</div>
-        <div class="card-tag">Leadership</div>
-        <h3>Managing Up</h3>
-        <p>Learn to challenge your manager's decisions, raise concerns, and influence outcomes — without burning bridges.</p>
-      </div>
-
-      <div class="scenario-card reveal">
-        <div class="card-num">04</div>
-        <div class="card-icon">🎯</div>
-        <div class="card-tag">Influence</div>
-        <h3>The High-Stakes Pitch</h3>
-        <p>Practise presenting an idea, proposal, or business case to a sceptical audience — and defending it when the questions get hard.</p>
-      </div>
-
-      <div class="scenario-card reveal">
-        <div class="card-num">05</div>
-        <div class="card-icon">📋</div>
-        <div class="card-tag">High Stakes</div>
-        <h3>Regulatory & Audit Pressure</h3>
-        <p>Practise staying composed and clear under examiner or regulator scrutiny — a scenario built specifically for financial services professionals.</p>
-      </div>
-
-      <div class="scenario-card reveal">
-        <div class="card-num">06</div>
-        <div class="card-icon">💬</div>
-        <div class="card-tag">Redundancy</div>
-        <h3>Breaking Difficult News</h3>
-        <p>Whether it's a redundancy conversation, a rejected promotion, or a project cancellation — practise delivering hard news with clarity and care.</p>
-      </div>
-
+    <h2 class="reveal delay-1">Practice the moments that matter most</h2>
+    <p class="sub reveal delay-2">Each scenario puts you in a real workplace conversation. You choose the pressure level and the AI adapts. No scripts. No easy outs.</p>
+  </div>
+  <div class="scenarios-scroll">
+    <div class="scenario-card">
+      <div class="card-num">01</div><div class="card-icon">🪞</div>
+      <div class="card-tag">Performance</div>
+      <h3>Delivering Difficult Feedback</h3>
+      <p>Practise giving honest performance feedback to a team member without damaging the relationship or losing the message.</p>
+    </div>
+    <div class="scenario-card">
+      <div class="card-num">02</div><div class="card-icon">💼</div>
+      <div class="card-tag">Negotiation</div>
+      <h3>Salary &amp; Compensation</h3>
+      <p>Walk into compensation conversations with confidence. Practise anchoring, handling pushback, and knowing when to hold firm.</p>
+    </div>
+    <div class="scenario-card">
+      <div class="card-num">03</div><div class="card-icon">⚡</div>
+      <div class="card-tag">Leadership</div>
+      <h3>Managing Up</h3>
+      <p>Learn to challenge your manager's decisions, raise concerns, and influence outcomes — without burning bridges.</p>
+    </div>
+    <div class="scenario-card">
+      <div class="card-num">04</div><div class="card-icon">🎯</div>
+      <div class="card-tag">Influence</div>
+      <h3>The High-Stakes Pitch</h3>
+      <p>Practise presenting an idea or business case to a sceptical audience — and defending it when the questions get hard.</p>
+    </div>
+    <div class="scenario-card">
+      <div class="card-num">05</div><div class="card-icon">📋</div>
+      <div class="card-tag">High Stakes</div>
+      <h3>Regulatory &amp; Audit Pressure</h3>
+      <p>Practise staying composed and clear under examiner or regulator scrutiny — built for financial services professionals.</p>
+    </div>
+    <div class="scenario-card">
+      <div class="card-num">06</div><div class="card-icon">💬</div>
+      <div class="card-tag">Redundancy</div>
+      <h3>Breaking Difficult News</h3>
+      <p>Whether it's a redundancy conversation, a rejected promotion, or a project cancellation — practise delivering hard news with clarity and care.</p>
     </div>
   </div>
+  <div class="scroll-hint">← Swipe to explore all scenarios →</div>
 </section>
-
+ 
 <!-- HOW IT WORKS -->
 <section class="how-section">
-  <div class="section-label reveal">How it works</div>
-  <h2 class="reveal">Three steps to a better conversation</h2>
-  <div class="steps">
-    <div class="step reveal">
-      <div class="step-num">01</div>
-      <h3>Pick your scenario</h3>
-      <p>Choose from more than 30 real-world conversations across performance, negotiation, leadership, and more. Each one is built from lived professional experience.</p>
+  <div class="how-inner">
+    <div class="how-header">
+      <div class="section-label reveal">How it works</div>
+      <h2 class="reveal delay-1">Three steps to a better conversation</h2>
     </div>
-    <div class="step reveal">
-      <div class="step-num">02</div>
-      <h3>Set your pressure level</h3>
-      <p>Choose light, medium, or high pushback. The AI plays the other person — your manager, your client, your examiner — and adapts its resistance to match the challenge you're ready for.</p>
-    </div>
-    <div class="step reveal">
-      <div class="step-num">03</div>
-      <h3>Get honest feedback</h3>
-      <p>After each session, Fable breaks down what landed, what fell flat, and what habit to work on next. Then you go again.</p>
+    <div class="steps">
+      <div class="step reveal-left delay-1">
+        <div class="step-num">01</div>
+        <h3>Pick your scenario</h3>
+        <p>Choose from more than 30 real-world conversations across performance, negotiation, leadership, and more. Each one is built from lived professional experience.</p>
+      </div>
+      <div class="step reveal delay-2">
+        <div class="step-num">02</div>
+        <h3>Set your pressure level</h3>
+        <p>Choose light, medium, or high pushback. The AI plays the other person — your manager, your client, your examiner — and adapts its resistance to match the challenge.</p>
+      </div>
+      <div class="step reveal-right delay-3">
+        <div class="step-num">03</div>
+        <h3>Get honest feedback</h3>
+        <p>After each session, Fable breaks down what landed, what fell flat, and what habit to work on next. Then you go again.</p>
+      </div>
     </div>
   </div>
 </section>
-
+ 
+<!-- DEMO MOCKUP -->
+<section class="demo-section">
+  <div class="demo-inner">
+    <div class="demo-copy reveal-left">
+      <div class="section-label">See it in action</div>
+      <h2>A real conversation.<br>Before it's real.</h2>
+      <p>You pick the scenario and set the pressure. Fable plays the other person and adapts to how you respond in real time.</p>
+      <p>After each session, you get specific feedback on what worked, what fell flat, and exactly what to sharpen before the moment arrives.</p>
+      <div class="pressure-pills">
+        <span class="pressure-pill light">🟢 Light pushback</span>
+        <span class="pressure-pill medium">🟠 Medium pressure</span>
+        <span class="pressure-pill high">🔴 High stakes</span>
+      </div>
+    </div>
+    <div class="mockup-window reveal-right">
+      <div class="mockup-topbar">
+        <span class="mockup-scenario-tag">💼 Salary &amp; Compensation</span>
+        <span class="mockup-pressure-badge">Medium pressure</span>
+      </div>
+      <div class="mockup-chat">
+        <div class="bubble-wrap them">
+          <span class="bubble-label">Your manager</span>
+          <div class="bubble them">I want to be upfront — budget is tight this year. I can offer 2%. I know it's not what you were hoping for, but that's where we are.</div>
+        </div>
+        <div class="bubble-wrap me">
+          <span class="bubble-label">You</span>
+          <div class="bubble me">I appreciate you being direct. This year I took on more than my role required, delivered every project on time, and stepped up when the team needed it. Based on that and where the market sits, I was expecting something closer to 8%.</div>
+        </div>
+        <div class="bubble-wrap them">
+          <span class="bubble-label">Your manager</span>
+          <div class="typing-indicator">
+            <span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-feedback">
+        <div class="feedback-icon">💡</div>
+        <div class="feedback-text">
+          <div class="feedback-title">Strong — you gave reasons, not just a number</div>
+          <div class="feedback-sub">Next: bring one market benchmark to hold your anchor</div>
+        </div>
+        <div class="feedback-score">7.4</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
 <!-- FOR WHO -->
 <section class="for-section">
   <div class="section-label reveal">Who it's for</div>
-  <h2 class="reveal">Built by a consultant.<br>Built for professionals.</h2>
-  <p class="sub reveal">If your career depends on how you communicate under pressure, Fable was made with you in mind.</p>
+  <h2 class="reveal delay-1">Built by a consultant.<br>Built for professionals.</h2>
+  <p class="sub reveal delay-2">If your career depends on how you communicate under pressure, Fable was made with you in mind.</p>
   <div class="for-grid">
-    <span class="for-pill reveal">Consultants</span>
-    <span class="for-pill reveal">Risk & Compliance Professionals</span>
-    <span class="for-pill reveal">Finance Leaders</span>
-    <span class="for-pill reveal">Team Managers</span>
-    <span class="for-pill reveal">Senior Associates</span>
-    <span class="for-pill reveal">Anyone navigating a difficult conversation</span>
+    <span class="for-pill reveal delay-1">Consultants</span>
+    <span class="for-pill reveal delay-2">Risk &amp; Compliance Professionals</span>
+    <span class="for-pill reveal delay-3">Finance Leaders</span>
+    <span class="for-pill reveal delay-4">Team Managers</span>
+    <span class="for-pill reveal delay-5">Senior Associates</span>
+    <span class="for-pill reveal delay-6">Anyone navigating a difficult conversation</span>
   </div>
 </section>
-
-<!-- WAITLIST -->
+ 
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-header reveal">
+      <div class="section-label" style="text-align:center;margin-bottom:14px;">Pricing</div>
+      <h2>Simple. Honest.<br>Priced for professionals.</h2>
+      <p>Start free and see what it feels like. Upgrade when you're ready — or lock in the founding rate before it closes.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal-left delay-1">
+        <div class="pricing-tier">Free</div>
+        <div class="pricing-price"><sup></sup>$0</div>
+        <div class="pricing-cadence">Always free · No credit card needed</div>
+        <div class="pricing-desc">A real taste of Fable. Three scenarios, full AI coaching — enough to know whether this is worth your time.</div>
+        <ul class="pricing-features">
+          <li><span class="feature-check">✓</span> 3 scenarios (Performance, Negotiation, Managing Up)</li>
+          <li><span class="feature-check">✓</span> All three pressure levels</li>
+          <li><span class="feature-check">✓</span> AI feedback after every session</li>
+          <li><span class="feature-check">✓</span> Unlimited replays</li>
+        </ul>
+        <a href="https://fable-nu.vercel.app" class="pricing-cta outline">Try Fable Free →</a>
+      </div>
+      <div class="pricing-card featured reveal-right delay-2">
+        <div class="founding-badge">Founding Member</div>
+        <div class="pricing-tier">Annual</div>
+        <div class="pricing-price"><sup>$</sup>99</div>
+        <div class="pricing-cadence">per year · rate locked for life · first 50 only</div>
+        <div class="pricing-desc">Full access to everything Fable is and becomes — at a founding rate that never changes, no matter how the product grows.</div>
+        <ul class="pricing-features">
+          <li><span class="feature-check">✓</span> All 30+ scenarios, with more added monthly</li>
+          <li><span class="feature-check">✓</span> All pressure levels and full conversation depth</li>
+          <li><span class="feature-check">✓</span> Detailed coaching feedback and session notes</li>
+          <li><span class="feature-check">✓</span> The 30-day Storylab programme</li>
+          <li><span class="feature-check">✓</span> Every future scenario at no extra cost</li>
+          <li><span class="feature-check">✓</span> Founding rate locked — forever</li>
+        </ul>
+        <a href="#founding-capture" class="pricing-cta solid">Get Founding Access →</a>
+      </div>
+    </div>
+    <p class="pricing-note reveal"><strong>First 50 founding members only.</strong> When the cap fills, the founding rate closes and pricing moves to $199/year. Waitlist members get first access.</p>
+    <div class="founding-capture reveal" id="founding-capture">
+      <p>Checkout coming soon. Leave your email and you'll be first in line when founding access opens — with the rate locked from day one.</p>
+      <form class="founding-form" onsubmit="handleSubmit(event,'founding')">
+        <input type="email" id="email-founding" placeholder="your@email.com" required>
+        <button type="submit">Reserve my spot</button>
+      </form>
+    </div>
+  </div>
+</section>
+ 
+<!-- WAITLIST BOTTOM -->
 <section class="waitlist-section">
-  <div class="section-label">Still in development</div>
-  <h2>Be <em>ready</em> before<br>the moment arrives.</h2>
-  <p>Fable is being built right now. Join the waitlist and be first to access it when we launch — plus get updates as we build.</p>
-  <form class="cta-form-bottom" onsubmit="handleSubmit(event, 'bottom')">
+  <div class="section-label reveal">Still in development</div>
+  <h2 class="reveal delay-1">Be <em>ready</em> before<br>the moment arrives.</h2>
+  <p class="reveal delay-2">Fable is being built right now. Join the waitlist and be first to access it when we launch — plus get updates as we build.</p>
+  <form class="cta-form-bottom reveal delay-3" onsubmit="handleSubmit(event,'bottom')">
     <input type="email" id="email-bottom" placeholder="your@email.com" required>
     <button type="submit">Join the Waitlist</button>
   </form>
-  <div class="status-badge">
+  <div class="status-badge reveal delay-4">
     <span class="status-dot"></span>
     Actively in development · Updates coming soon
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">F<span>.</span>able</div>
-  <div class="footer-note">© 2026 Fable · Built by <a href="https://www.linkedin.com/in/mubienahsan" style="color:rgba(255,255,255,0.55);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.2);">Mubien Ahsan</a> · Early access coming soon</div>
+  <div class="footer-note">© 2026 Fable · Built by <a href="https://www.linkedin.com/in/mubienahsan" style="color:rgba(255,255,255,0.35);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);">Mubien Ahsan</a> · Early access coming soon</div>
 </footer>
-
+ 
 <script>
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Waitlist form
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el => obs.observe(el));
+ 
 async function handleSubmit(e, source) {
   e.preventDefault();
-  const emailId = source === 'hero' ? 'email-hero' : 'email-bottom';
-  const email = document.getElementById(emailId).value;
+  const ids = { hero:'email-hero', bottom:'email-bottom', founding:'email-founding' };
+  const email = document.getElementById(ids[source]).value;
   const btn = e.target.querySelector('button');
   const input = e.target.querySelector('input');
-
-  btn.textContent = 'Joining...';
-  btn.disabled = true;
-  input.disabled = true;
-
+  btn.textContent = 'Sending...'; btn.disabled = input.disabled = true;
   try {
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
-    });
-
+    const res = await fetch('/api/subscribe', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email,source}) });
     const data = await res.json();
-
-    if (data.success) {
-      btn.textContent = '✓ You\'re on the list';
-      btn.style.background = '#5AC87A';
-    } else {
-      btn.textContent = 'Try again';
-      btn.style.background = '#E8644A';
-      btn.disabled = false;
-      input.disabled = false;
-    }
-  } catch (err) {
-    btn.textContent = 'Try again';
-    btn.style.background = '#E8644A';
-    btn.disabled = false;
-    input.disabled = false;
-  }
+    if (data.success) { btn.textContent = "✓ You're on the list"; btn.style.background = '#5AC87A'; }
+    else throw new Error();
+  } catch { btn.textContent = 'Try again'; btn.disabled = input.disabled = false; }
 }
 </script>
-
 </body>
 </html>
