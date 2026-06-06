@@ -144,7 +144,22 @@ nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; display: flex; 
 .for-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 700px; margin: 0 auto; }
 .for-pill { background: var(--white); border: 1px solid rgba(140,123,107,0.18); border-radius: 40px; padding: 12px 24px; font-size: 14px; font-weight: 500; color: var(--navy); transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s; cursor: default; }
 .for-pill:hover { background: var(--coral); border-color: var(--coral); color: var(--white); transform: translateY(-2px); }
- 
+
+/* TESTIMONIALS */
+.testimonials-section { padding: 140px 48px; background: var(--cream); }
+.testimonials-inner { max-width: 1080px; margin: 0 auto; }
+.testimonials-header { text-align: center; margin-bottom: 64px; }
+.testimonials-header h2 { font-family: 'Lora', serif; font-size: clamp(28px, 4vw, 48px); color: var(--navy); line-height: 1.15; letter-spacing: -0.5px; }
+.testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.testimonial-card { background: var(--white); border: 1.5px solid rgba(140,123,107,0.12); border-radius: 24px; padding: 40px 38px; box-shadow: 0 1px 3px rgba(28,43,74,0.05); display: flex; flex-direction: column; }
+.testimonial-stars { color: var(--coral); font-size: 15px; letter-spacing: 2px; margin-bottom: 20px; }
+.testimonial-quote { font-family: 'Lora', serif; font-size: 18px; color: var(--ink); line-height: 1.6; margin-bottom: 28px; }
+.testimonial-quote p { margin-bottom: 16px; }
+.testimonial-quote p:last-child { margin-bottom: 0; }
+.testimonial-author { font-size: 15px; font-weight: 700; color: var(--navy); }
+.testimonial-role { font-size: 13px; color: var(--stone); margin-top: 3px; line-height: 1.45; }
+.testimonial-role .company { color: var(--coral); font-weight: 600; }
+
 /* PRICING */
 .pricing-section { padding: 140px 48px; }
 .pricing-inner { max-width: 1100px; margin: 0 auto; }
@@ -229,6 +244,7 @@ footer { background: #111D30; padding: 36px 48px; display: flex; align-items: ce
 @media (max-width:900px) {
   .demo-inner { grid-template-columns:1fr; gap:60px; }
   .pricing-grid { grid-template-columns:1fr; }
+  .testimonial-grid { grid-template-columns:1fr; }
   .steps { grid-template-columns:1fr; gap:48px; }
   .mockup-window { transform:none !important; }
   .stats-inner { grid-template-columns:repeat(2,1fr); }
@@ -239,7 +255,9 @@ footer { background: #111D30; padding: 36px 48px; display: flex; align-items: ce
   .hero { padding:80px 24px 60px; }
   .cta-form { flex-direction:column; border-radius:14px; }
   .cta-form input, .cta-form button { border-radius:0; }
-  .founder-strip, .what-section, .how-section, .demo-section, .for-section, .pricing-section, .waitlist-section { padding-left:24px; padding-right:24px; }
+  .founder-strip, .what-section, .how-section, .demo-section, .for-section, .testimonials-section, .pricing-section, .waitlist-section { padding-left:24px; padding-right:24px; }
+  .testimonials-section { padding-top:80px; padding-bottom:80px; }
+  .testimonial-card { padding:32px 26px; }
   .scenarios-section { padding-top:80px; padding-bottom:80px; }
   .scenarios-header { padding:0 24px; }
   .scenarios-scroll { padding:8px 24px 20px; }
@@ -460,6 +478,35 @@ footer { background: #111D30; padding: 36px 48px; display: flex; align-items: ce
   </div>
 </section>
  
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <div class="testimonials-header">
+      <div class="section-label reveal">What testers are saying</div>
+      <h2 class="reveal delay-1">Trusted by professionals who<br>have the hard conversations.</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal-left delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">
+          <p>“Very easy to use — and genuinely helpful for the conversations you encounter at work. Fable provides step-by-step guidance for challenging situations and coaching advice along the way. It gives professionals something real to prepare with.”</p>
+        </div>
+        <div class="testimonial-author">Marc C.</div>
+        <div class="testimonial-role">Director, Regulatory Compliance · <span class="company">Mastercard</span></div>
+      </div>
+      <div class="testimonial-card reveal-right delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">
+          <p>“The real value of Fable is not the roleplay — it’s the feedback engine. It identified my tendency to pre-justify and over-explain before getting to the point. That is the kind of feedback that can genuinely change communication habits over time.</p>
+          <p>I went in expecting a conversation simulator. What I found was a behavioural coaching tool disguised as conversation practice. More thoughtful than I expected — the quality and specificity of the feedback was the standout feature.”</p>
+        </div>
+        <div class="testimonial-author">Dammish A.</div>
+        <div class="testimonial-role">Internal Audit Manager · <span class="company">Fidelity</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="pricing-section" id="pricing">
   <div class="pricing-inner">
