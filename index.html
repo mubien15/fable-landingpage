@@ -159,7 +159,7 @@ nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; display: flex; 
 .testimonial-author { font-size: 15px; font-weight: 700; color: var(--navy); }
 .testimonial-role { font-size: 13px; color: var(--stone); margin-top: 3px; line-height: 1.45; }
 .testimonial-role .company { color: var(--coral); font-weight: 600; }
-.testimonial-more { grid-column: 1 / -1; align-items: center; text-align: center; justify-content: center; background: transparent; border-style: dashed; border-color: rgba(140,123,107,0.28); box-shadow: none; padding: 36px 38px; }
+.testimonial-more { align-items: center; text-align: center; justify-content: center; background: transparent; border-style: dashed; border-color: rgba(140,123,107,0.28); box-shadow: none; padding: 36px 38px; }
 .testimonial-more .more-dots { color: var(--coral); font-size: 18px; letter-spacing: 4px; margin-bottom: 12px; }
 .testimonial-more .more-title { font-family: 'Lora', serif; font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
 .testimonial-more .more-sub { font-size: 14px; color: var(--stone); line-height: 1.6; max-width: 520px; }
@@ -507,7 +507,15 @@ footer { background: #111D30; padding: 36px 48px; display: flex; align-items: ce
         <div class="testimonial-author">Dammish A.</div>
         <div class="testimonial-role">Internal Audit Manager · <span class="company">Fidelity</span></div>
       </div>
-      <div class="testimonial-card testimonial-more reveal delay-3">
+      <div class="testimonial-card reveal-left delay-3">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">
+          <p>“It gets you thinking about what types of things could come up — and how you’d answer them. Going through it helped me articulate what I was going to say in the room. The feedback on what landed and what created friction was genuinely useful. I probably would have gone in saying the wrong thing. After using Fable, I knew exactly how to reframe it.”</p>
+        </div>
+        <div class="testimonial-author">Ethan F.</div>
+        <div class="testimonial-role">Senior Consultant · <span class="company">KPMG</span></div>
+      </div>
+      <div class="testimonial-card testimonial-more reveal-right delay-4">
         <span class="more-dots">• • •</span>
         <p class="more-title">More reviews on the way</p>
         <p class="more-sub">Fable is in active beta with professionals across audit, consulting, and compliance. New feedback is coming in every week.</p>
