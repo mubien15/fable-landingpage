@@ -170,7 +170,7 @@ nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; display: flex; 
 .pricing-header { text-align: center; margin-bottom: 72px; }
 .pricing-header h2 { font-family: 'Lora', serif; font-size: clamp(32px, 5vw, 52px); color: var(--navy); line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.5px; }
 .pricing-header p { font-size: 18px; color: var(--stone); max-width: 520px; margin: 0 auto; line-height: 1.7; }
-.pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 860px; margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; max-width: 1080px; margin: 0 auto; align-items: start; }
 .pricing-card { background: var(--white); border-radius: 24px; padding: 48px 40px; border: 1.5px solid rgba(140,123,107,0.1); position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
 .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(28,43,74,0.08); }
 .pricing-card.featured { background: var(--navy); border-color: var(--navy); box-shadow: 0 24px 80px rgba(28,43,74,0.22); }
@@ -610,11 +610,26 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
         </ul>
         <a href="https://fable-nu.vercel.app/?plan=free" class="pricing-cta outline">Try Fable Free →</a>
       </div>
-      <div class="pricing-card featured reveal-right delay-2">
+      <div class="pricing-card reveal delay-2">
+        <div class="pricing-tier">Monthly</div>
+        <div class="pricing-price"><sup>$</sup>12</div>
+        <div class="pricing-cadence">per month · cancel anytime</div>
+        <div class="pricing-desc">The full Fable experience, month to month. No commitment — stay because it works, not because you're locked in.</div>
+        <ul class="pricing-features">
+          <li><span class="feature-check">✓</span> All 30+ scenarios, with new ones added regularly</li>
+          <li><span class="feature-check">✓</span> <span><strong>Rehearse mode</strong> — build your own personalised scenario for any conversation you’re facing</span></li>
+          <li><span class="feature-check">✓</span> All pressure levels and full conversation depth</li>
+          <li><span class="feature-check">✓</span> Detailed coaching feedback and session notes</li>
+          <li><span class="feature-check">✓</span> The 30-day Storylab programme</li>
+          <li><span class="feature-check">✓</span> Cancel anytime</li>
+        </ul>
+        <a href="#founding-capture" class="pricing-cta outline">Start Monthly →</a>
+      </div>
+      <div class="pricing-card featured reveal-right delay-3">
         <div class="founding-badge">Founding Member</div>
         <div class="pricing-tier">Annual</div>
         <div class="pricing-price"><sup>$</sup>99</div>
-        <div class="pricing-cadence">per year · rate locked for life · first 50 only</div>
+        <div class="pricing-cadence">per year · save 31% vs monthly · first 50 only</div>
         <div class="pricing-desc">Full access to everything Fable is and becomes — at a founding rate that never changes, no matter how the product grows.</div>
         <ul class="pricing-features">
           <li><span class="feature-check">✓</span> All 30+ scenarios, with new ones added regularly</li>
