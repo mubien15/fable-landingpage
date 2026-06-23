@@ -125,6 +125,11 @@ nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; display: flex; 
 .step-num { font-family: 'Lora', serif; font-size: 72px; font-weight: 700; color: rgba(232,100,74,0.1); line-height: 1; margin-bottom: 20px; }
 .step h3 { font-family: 'Lora', serif; font-size: 22px; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
 .step p { font-size: 15px; color: var(--stone); line-height: 1.7; }
+.rehearse-callout { margin-top: 72px; background: var(--navy); border-radius: 24px; padding: clamp(32px, 5vw, 56px); text-align: center; }
+.rehearse-callout .rc-tag { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--coral-lt); margin-bottom: 16px; }
+.rehearse-callout h3 { font-family: 'Lora', serif; font-size: clamp(24px, 3vw, 32px); font-weight: 700; color: var(--white); line-height: 1.25; margin-bottom: 16px; letter-spacing: -0.5px; }
+.rehearse-callout p { font-size: 16px; color: rgba(255,255,255,0.62); line-height: 1.75; max-width: 620px; margin: 0 auto; }
+.rehearse-callout p strong { color: var(--white); font-weight: 600; }
  
 /* DEMO SECTION */
 .demo-section { background: var(--navy); padding: 140px 48px; overflow: hidden; position: relative; }
@@ -479,7 +484,7 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
       <p>Whether it's a redundancy conversation, a rejected promotion, or a project cancellation — practise delivering hard news with clarity and care.</p>
     </div>
   </div>
-  <div class="scroll-hint">← Swipe to explore all scenarios →</div>
+  <div class="scroll-hint">← A few examples — swipe to explore →</div>
 </section>
  
 <!-- HOW IT WORKS -->
@@ -505,6 +510,12 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
         <h3>Get honest feedback</h3>
         <p>After each session, Fable breaks down what landed, what fell flat, and what habit to work on next. Then you go again.</p>
       </div>
+    </div>
+
+    <div class="rehearse-callout reveal">
+      <div class="rc-tag">Or build your own</div>
+      <h3>Facing a specific conversation? Rehearse it.</h3>
+      <p>With <strong>Rehearse mode</strong>, you describe the real moment you're walking into — who you're talking to, how they tend to react, and what you're worried about. Fable builds a custom simulation around your exact situation, so you can practise the real thing before it happens.</p>
     </div>
   </div>
 </section>
