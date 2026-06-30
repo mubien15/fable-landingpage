@@ -74,6 +74,9 @@ nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; display: flex; 
 .cta-form button { padding: 18px 28px; background: var(--coral); color: var(--white); border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; white-space: nowrap; transition: background 0.2s; }
 .cta-form button:hover { background: var(--coral-lt); }
 .cta-note { font-size: 12px; color: var(--stone); margin-top: 14px; animation: fadeUp 0.7s 0.35s ease both; }
+.app-cta { display: inline-block; padding: 18px 42px; background: var(--coral); color: var(--white); border-radius: 999px; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; text-decoration: none; box-shadow: 0 12px 40px rgba(232,100,74,0.3); transition: background 0.2s, transform 0.2s; animation: fadeUp 0.7s 0.3s ease both; }
+.app-cta:hover { background: var(--coral-lt); transform: translateY(-1px); }
+.app-cta.on-navy { box-shadow: 0 14px 50px rgba(232,100,74,0.42); }
  
 /* STATS STRIP */
 .stats-strip { background: var(--cream-dk); border-top: 1px solid rgba(140,123,107,0.1); border-bottom: 1px solid rgba(140,123,107,0.1); }
@@ -373,7 +376,7 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar">
   <span class="announce-dot"></span>
-  Now in beta · Founding member access open for the first 50
+  Founding access is open — first 50 members only
   <a href="#pricing">See founding rate →</a>
 </div>
  
@@ -386,7 +389,7 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
   </a>
   <div class="nav-right">
     <a href="#pricing" class="nav-cta">Founding access</a>
-    <div class="nav-badge">Early Access</div>
+    <a href="https://fable-nu.vercel.app/" class="nav-badge" style="text-decoration:none">Log in →</a>
   </div>
 </nav>
  
@@ -398,12 +401,8 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
   <div class="hero-eyebrow">Built for professionals</div>
   <h1>The conversations that <em>shape careers</em> deserve practice</h1>
   <p class="hero-sub">30 scenarios. 30 days. Fable trains you for the real, difficult conversations at work — before they happen.</p>
-  <form class="cta-form" onsubmit="handleSubmit(event,'hero')">
-    <input type="email" id="email-hero" placeholder="your@email.com" required>
-    <button type="submit">Join Waitlist</button>
-  </form>
-  <p class="cta-note">Currently in development · Be first to know when we launch</p>
-  <p class="cta-note" style="margin-top:6px;">Fable will be a paid app — waitlist members get early access at a founder's rate.</p>
+  <a href="https://fable-nu.vercel.app/?plan=free" class="app-cta">Start free →</a>
+  <p class="cta-note">Free to start · No credit card needed</p>
 </section>
  
 <!-- STATS STRIP -->
@@ -590,7 +589,7 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
 <section class="testimonials-section">
   <div class="testimonials-inner">
     <div class="testimonials-header">
-      <div class="section-label reveal">What beta testers are saying so far</div>
+      <div class="section-label reveal">What professionals are saying</div>
       <h2 class="reveal delay-1">Trusted by professionals who have the hard conversations.</h2>
     </div>
     <div class="testimonial-grid">
@@ -622,7 +621,7 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
       <div class="testimonial-card testimonial-more reveal-right delay-4">
         <span class="more-dots">• • •</span>
         <p class="more-title">More reviews on the way</p>
-        <p class="more-sub">Fable is in active beta with professionals across audit, consulting, and compliance. New feedback is coming in every week.</p>
+        <p class="more-sub">Professionals across audit, consulting, and compliance use Fable to prepare for their hardest conversations.</p>
       </div>
     </div>
   </div>
@@ -663,7 +662,7 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
           <li><span class="feature-check">✓</span> The 30-day Storylab programme</li>
           <li><span class="feature-check">✓</span> Cancel anytime</li>
         </ul>
-        <a href="#founding-capture" class="pricing-cta outline">Start Monthly →</a>
+        <a href="https://fable-nu.vercel.app/?plan=monthly" class="pricing-cta outline">Start Monthly →</a>
       </div>
       <div class="pricing-card featured reveal-right delay-3">
         <div class="founding-badge">Founding Member</div>
@@ -680,32 +679,26 @@ nav { top: 12px; margin: 12px 16px 0; border-radius: 18px; border: 1px solid rgb
           <li><span class="feature-check">✓</span> Every future scenario at no extra cost</li>
           <li><span class="feature-check">✓</span> Founding rate locked — forever</li>
         </ul>
-        <a href="#founding-capture" class="pricing-cta solid">Get Founding Access →</a>
+        <a href="https://fable-nu.vercel.app/?plan=annual" class="pricing-cta solid">Get Founding Access →</a>
       </div>
     </div>
-    <p class="pricing-note reveal"><strong>First 50 founding members only.</strong> When the cap fills, the founding rate closes and annual pricing moves to $199/year. Waitlist members get first access.</p>
+    <p class="pricing-note reveal"><strong>First 50 founding members only.</strong> When the cap fills, the founding rate closes and annual pricing moves to $199/year.</p>
     <div class="founding-capture reveal" id="founding-capture">
-      <p>Checkout coming soon. Leave your email and you'll be first in line when founding access opens — with the rate locked from day one.</p>
-      <form class="founding-form" onsubmit="handleSubmit(event,'founding')">
-        <input type="email" id="email-founding" placeholder="your@email.com" required>
-        <button type="submit">Reserve my spot</button>
-      </form>
+      <p>The founding rate is locked from day one. Create your account and claim your spot before the first 50 fill.</p>
+      <a href="https://fable-nu.vercel.app/?plan=annual" class="app-cta">Claim founding access →</a>
     </div>
   </div>
 </section>
  
-<!-- WAITLIST BOTTOM -->
+<!-- FINAL CTA -->
 <section class="waitlist-section">
-  <div class="section-label reveal">Still in development</div>
+  <div class="section-label reveal">Start today</div>
   <h2 class="reveal delay-1">Be <em>ready</em> before<br>the moment arrives.</h2>
-  <p class="reveal delay-2">Fable is being built right now. Join the waitlist and be first to access it when we launch — plus get updates as we build.</p>
-  <form class="cta-form-bottom reveal delay-3" onsubmit="handleSubmit(event,'bottom')">
-    <input type="email" id="email-bottom" placeholder="your@email.com" required>
-    <button type="submit">Join the Waitlist</button>
-  </form>
+  <p class="reveal delay-2">Practice the conversation before it happens. Start free — no credit card, no waiting.</p>
+  <a href="https://fable-nu.vercel.app/?plan=free" class="app-cta on-navy reveal delay-3">Start free →</a>
   <div class="status-badge reveal delay-4">
     <span class="status-dot"></span>
-    Actively in development · Updates coming soon
+    Free to start · Founding access open for the first 50
   </div>
 </section>
  
