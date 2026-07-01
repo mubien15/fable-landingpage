@@ -36,11 +36,15 @@ hr { border:none; border-top:1px solid var(--border); margin:44px 0; }
 <body>
 <div class="wrap">
   <a href="/" class="back">← Back to Fable</a>
-  <div class="logo"><span>F</span>.able</div>
+  <div style="display:flex;align-items:flex-end;margin-bottom:4px">
+    <span style="font-family:-apple-system,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-size:26px;font-weight:700;line-height:1;letter-spacing:-0.03em;color:#E8644A">F</span>
+    <svg width="12" height="11" viewBox="0 0 24 22" style="display:block;margin:0 0 2.3px -0.8px" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="14" rx="5" fill="#E8644A"/><polygon points="5,15 4,21 11,15" fill="#E8644A"/></svg>
+    <span style="font-family:-apple-system,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-size:26px;font-weight:700;line-height:1;letter-spacing:-0.03em;color:#1C2B4A;margin-left:-0.5px">able</span>
+  </div>
   <div class="eyebrow">Privacy Policy</div>
 
   <h1>Your data, handled with care.</h1>
-  <p class="updated">Last updated: June 23, 2026</p>
+  <p class="updated">Last updated: July 1, 2026</p>
 
   <p>Fable is built for professionals who practice sensitive conversations — performance reviews, audit findings, difficult client moments. We take data seriously. This policy explains exactly what we collect, how we use it, and what we never do with it.</p>
 
@@ -48,7 +52,7 @@ hr { border:none; border-top:1px solid var(--border); margin:44px 0; }
 
   <h2>What we collect</h2>
   <ul>
-    <li><strong>Email address</strong> — when you sign up or join the waitlist.</li>
+    <li><strong>Email address</strong> — when you create an account.</li>
     <li><strong>Conversation transcripts</strong> — the text of your practice sessions, used to generate AI coaching feedback.</li>
     <li><strong>Session metadata</strong> — timestamps, scenario type, difficulty level, and session ratings.</li>
     <li><strong>Usage data</strong> — pages visited, features used, session duration. Standard analytics to understand how the product is working.</li>
@@ -64,10 +68,10 @@ hr { border:none; border-top:1px solid var(--border); margin:44px 0; }
   <h2>Third-party processors</h2>
   <ul>
     <li><strong>Anthropic</strong> — processes your conversation transcripts to generate AI coaching feedback. Data is transmitted securely and not retained beyond the session.</li>
+    <li><strong>OpenAI</strong> — processes your voice audio when you use voice mode, to transcribe what you say and generate the counterpart's spoken replies. Audio is not retained beyond generating the response.</li>
     <li><strong>Vercel</strong> — hosts the Fable web application.</li>
-    <li><strong>Supabase</strong> — stores your account data and session history.</li>
+    <li><strong>Supabase</strong> — stores your account data and session history, and sends account emails (like password resets).</li>
     <li><strong>Stripe</strong> — processes subscription payments. We never see or store your full card details.</li>
-    <li><strong>Brevo</strong> — sends transactional and streak emails.</li>
   </ul>
 
   <h2>Data retention</h2>
